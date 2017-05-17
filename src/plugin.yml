@@ -1,0 +1,4 @@
+name: aHub
+author: Oahu
+version: 1.0
+main: us.aquarin.hub.Hub
