@@ -12,11 +12,15 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import us.aquarin.hub.Hub;
+
+import static us.aquarin.hub.Hub.plugin;
 
 /**
  * Created by aidan on 5/14/2017.
  */
 public class Cosmetics implements Listener {
+
 
     private ItemStack createButton(ItemStack stack, String name) {
         ItemMeta m = stack.getItemMeta();
@@ -137,6 +141,7 @@ public class Cosmetics implements Listener {
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
         Player p = e.getPlayer();
+        if (p.getItemInHand().getType() == null) { return; }
         if (p.getItemInHand().getType() == Material.HOPPER) {
             openCosmetics(p);
         }
@@ -146,6 +151,7 @@ public class Cosmetics implements Listener {
     public void onClick(InventoryClickEvent e) {
         Player p = (Player) e.getWhoClicked();
         String name = e.getCurrentItem().getItemMeta().getDisplayName();
+        if (name == null) { return; }
         if (e.getInventory().getTitle().equalsIgnoreCase("§bCosmetics")) {
             if (name.equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', "&eHats"))) {
                 e.setCancelled(true);
@@ -184,97 +190,50 @@ public class Cosmetics implements Listener {
             createButton(white, "&fWhite");
 
             if (name.equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', "&cRed"))) {
-                if (p.getInventory().getHelmet() != null) {
-                    message(p, "&aYou already had a hat on, it has been replaced.");
-                    message(p, "&aThe red hat has been applied.");
-                    p.getInventory().setHelmet(red);
-
-                } else {
-                    message(p, "&aThe red hat has been applied.");
-                    p.getInventory().setHelmet(red);
-                }
+                message(p, plugin.getConfig().getString("Messages.Cosmetics.Apply Hat"));
+                p.getInventory().setHelmet(red);
                 e.setCancelled(true);
                 p.closeInventory();
             }
             if (name.equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', "&bAqua"))) {
-                if (p.getInventory().getHelmet() != null) {
-                    message(p, "&aYou already had a hat on, it has been replaced.");
-                    message(p, "&aThe aqua hat has been applied.");
-                    p.getInventory().setHelmet(aqua);
-                } else {
-                    message(p, "&aThe aqua hat has been applied.");
-                    p.getInventory().setHelmet(aqua);
-                }
+                message(p, plugin.getConfig().getString("Messages.Cosmetics.Apply Hat"));
+                p.getInventory().setHelmet(aqua);
                 e.setCancelled(true);
                 p.closeInventory();
             }
             if (name.equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', "&2Green"))) {
-                if (p.getInventory().getHelmet() != null) {
-                    message(p, "&aYou already had a hat on, it has been replaced.");
-                    message(p, "&aThe green hat has been applied.");
-                    p.getInventory().setHelmet(green);
-                } else {
-                    message(p, "&aThe green hat has been applied.");
-                    p.getInventory().setHelmet(green);
-                }
+                message(p, plugin.getConfig().getString("Messages.Cosmetics.Apply Hat"));
+                p.getInventory().setHelmet(green);
                 e.setCancelled(true);
                 p.closeInventory();
             }
             if (name.equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', "&eYellow"))) {
-                if (p.getInventory().getHelmet() != null) {
-                    message(p, "&aYou already had a hat on, it has been replaced.");
-                    message(p, "&aThe yellow hat has been applied.");
-                    p.getInventory().setHelmet(yellow);
-                } else {
-                    message(p, "&aThe yellow hat has been applied.");
-                    p.getInventory().setHelmet(yellow);
-                }
+                message(p, plugin.getConfig().getString("Messages.Cosmetics.Apply Hat"));
+                p.getInventory().setHelmet(yellow);
                 e.setCancelled(true);
                 p.closeInventory();
             }
             if (name.equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', "&6Orange"))) {
-                if (p.getInventory().getHelmet() != null) {
-                    message(p, "&aYou already had a hat on, it has been replaced.");
-                    message(p, "&aThe orange hat has been applied.");
-                    p.getInventory().setHelmet(orange);
-                } else {
-                    message(p, "&aThe red hat has been applied.");
-                    p.getInventory().setHelmet(orange);
-                }
+                message(p, plugin.getConfig().getString("Messages.Cosmetics.Apply Hat"));
+                p.getInventory().setHelmet(orange);
                 e.setCancelled(true);
                 p.closeInventory();
             }
             if (name.equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', "&0Black"))) {
-                if (p.getInventory().getHelmet() != null) {
-                    message(p, "&aYou already had a hat on, it has been replaced.");
-                    message(p, "&aThe black hat has been applied.");
-                    p.getInventory().setHelmet(black);
-                } else {
-                    message(p, "&aThe black hat has been applied.");
-                    p.getInventory().setHelmet(black);
-                }
+                message(p, plugin.getConfig().getString("Messages.Cosmetics.Apply Hat"));
+                p.getInventory().setHelmet(black);
                 e.setCancelled(true);
                 p.closeInventory();
             }
             if (name.equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', "&fWhite"))) {
-                if (p.getInventory().getHelmet() != null) {
-                    message(p, "&aYou already had a hat on, it has been replaced.");
-                    message(p, "&aThe white hat has been applied.");
-                    p.getInventory().setHelmet(white);
-                } else {
-                    message(p, "&aThe white hat has been applied.");
-                    p.getInventory().setHelmet(white);
-                }
+                message(p, plugin.getConfig().getString("Messages.Cosmetics.Apply Hat"));
+                p.getInventory().setHelmet(white);
                 e.setCancelled(true);
                 p.closeInventory();
             }
             if (name.equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', "&4Remove Current Hat"))) {
-                if (p.getInventory().getHelmet() != null) {
-                    message(p, "&aYour hat has been removed.");
-                    p.getInventory().setHelmet(null);
-                } else {
-                    message(p, "&aYou are not currently wearing a hat.");
-                }
+                message(p, plugin.getConfig().getString("Messages.Cosmetics.Remove Hat"));
+                p.getInventory().setHelmet(null);
                 e.setCancelled(true);
                 p.closeInventory();
             }
@@ -295,51 +254,27 @@ public class Cosmetics implements Listener {
             createButton(boots, "&eBoots");
 
             if (name.equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', "&eHelmet"))) {
-               if (p.getInventory().getHelmet() != null) {
-                   message(p, "&aYou already had a hat on, it has been replaced.");
-                   message(p, "&aThe helmet has been applied.");
-                   p.getInventory().setHelmet(helm);
-               } else {
-                   message(p, "&aThe helmet has been applied.");
-                   p.getInventory().setHelmet(helm);
-               }
+                message(p, plugin.getConfig().getString("Messages.Cosmetics.Apply Armor"));
+                p.getInventory().setHelmet(helm);
             }
             if (name.equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', "&eChestplate"))) {
-                if (p.getInventory().getChestplate() != null) {
-                    message(p, "&aYou already had a chestplate on, it has been replaced.");
-                    message(p, "&aThe chestplate has been applied.");
-                    p.getInventory().setChestplate(chest);
-                } else {
-                    message(p, "&aThe chestplate has been applied.");
-                    p.getInventory().setChestplate(chest);
-                }
+                message(p, plugin.getConfig().getString("Messages.Cosmetics.Apply Armor"));
+                p.getInventory().setChestplate(chest);
             }
             if (name.equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', "&eLeggings"))) {
-                if (p.getInventory().getLeggings() != null) {
-                    message(p, "&aYou already had leggings on, it has been replaced.");
-                    message(p, "&aThe leggings have been applied.");
-                    p.getInventory().setLeggings(pants);
-                } else {
-                    message(p, "&aThe leggings have been applied.");
-                    p.getInventory().setLeggings(pants);
-                }
+                message(p, plugin.getConfig().getString("Messages.Cosmetics.Apply Armor"));
+                p.getInventory().setLeggings(pants);
             }
             if (name.equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', "&eBoots"))) {
-                if (p.getInventory().getBoots() != null) {
-                    message(p, "&aYou already had boots on, it has been replaced.");
-                    message(p, "&aThe boots have been applied.");
-                    p.getInventory().setBoots(boots);
-                } else {
-                    message(p, "&aThe boots have been applied.");
-                    p.getInventory().setBoots(boots);
-                }
+                message(p, plugin.getConfig().getString("Messages.Cosmetics.Apply Armor"));
+                p.getInventory().setBoots(boots);
             }
             if (name.equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', "&4Remove Current Armor"))) {
                 p.getInventory().setHelmet(null);
                 p.getInventory().setChestplate(null);
                 p.getInventory().setLeggings(null);
                 p.getInventory().setBoots(null);
-                message(p, "&aAll armor has been removed.");
+                message(p, plugin.getConfig().getString("Messages.Cosmetics.Remove Armor"));
             }
 
         }

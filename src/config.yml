@@ -1,0 +1,31 @@
+# Configuration File for the aHub plugin on Spigot
+# Made by Oahu
+
+# Here you can edit the names of the items in your inventory on join.
+Item Name:
+  Speed Boost: '&aSpeed Boost'
+  Jump Boost: '&aJump Boost'
+  Navigation: '&3Navigation'
+  Player Visibility: '&cPlayer Visibility'
+  Cosmetics: '&bCosmetics'
+
+# Here you can edit the messages in the plugin.
+Messages:
+  Navigation:
+    Join Server: '&aSending you to %server%...'
+    Failed Join: '&cError while sending you to &e%server%&c. (%error%)'
+  Speed Boost:
+    Enable: '&aSpeed Boost &7has been &2enabled&7.'
+    Disable: '&aSpeed Boost &7has been &cdisabled&7.'
+  Jump Boost:
+    Enable: '&aJump Boost &7has been &2enabled&7.'
+    Disable: '&aJump Boost &7has been &cdisabled&7.'
+  Player Visibility:
+    Hide: '&aPlayers &7have been hidden.'
+    Show: '&aPlayers &7have been shown.'
+  Cosmetics:
+    Apply Hat: '&aThe hat selected has been applied.'
+    Remove Hat: '&aYour hat has been removed.'
+    Not Wearing Hat: '&aYou are currently not wearing a hat.'
+    Apply Armor: '&aSelected armor has been applied.'
+    Remove Armor: '&aAll armor has been removed.'

@@ -12,31 +12,34 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import us.aquarin.hub.Hub;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.util.ArrayList;
+
+import static us.aquarin.hub.Hub.plugin;
 
 /**
  * Created by aidan on 5/14/2017.
  */
 public class ServerSelector implements Listener {
 
+
     private void transfer(Player p, String server) {
         ByteArrayOutputStream b = new ByteArrayOutputStream();
         DataOutputStream out = new DataOutputStream(b);
         try
         {
-            p.sendMessage("§aSending you to " + server + "...");
+            p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Messages.Navigation.Join Server").replace("%server%", server)));
             out.writeUTF("Connect");
             out.writeUTF(server);
         }
         catch (Exception e)
         {
-            p.sendMessage("§cError while sending you to §e" + server + "§c. (" + e.getMessage() + ")");
+            p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Messages.Navigation.Failed Join")
+                    .replace("%server%", server).replace("%error%", e.getMessage())));
         }
-        p.sendPluginMessage(Hub.plugin, "BungeeCord", b.toByteArray());
+        p.sendPluginMessage(plugin, "BungeeCord", b.toByteArray());
     }
 
     private void openSelector(Player p) {
@@ -73,6 +76,7 @@ public class ServerSelector implements Listener {
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
         Player p = e.getPlayer();
+        if (p.getItemInHand().getType() == null) { return; }
         if (p.getItemInHand().getType() == Material.NETHER_STAR) {
             openSelector(p);
         }
@@ -81,8 +85,9 @@ public class ServerSelector implements Listener {
     @EventHandler
     public void onClick(InventoryClickEvent e) {
         Player p = (Player) e.getWhoClicked();
-
-        if (e.getCurrentItem().getType() == Material.EYE_OF_ENDER) {
+        ItemStack clicked = e.getCurrentItem();
+        if (clicked == null) { return; }
+        if (clicked.getType() == Material.EYE_OF_ENDER) {
             transfer(p, "OPFactions");
             e.setCancelled(true);
             p.closeInventory();
