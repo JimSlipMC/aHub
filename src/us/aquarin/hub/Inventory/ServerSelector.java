@@ -49,9 +49,11 @@ public class ServerSelector implements Listener {
         ItemMeta opfm = opf.getItemMeta();
         opfm.setDisplayName("§cOP Factions");
         ArrayList<String> oplore = new ArrayList<>();
+        oplore.add("§7§m----------------------");
         oplore.add("§4* §cGapple PvP");
         oplore.add("§4* §cOptimized Raiding");
         oplore.add("§4* §cExclusive Events");
+        oplore.add("§7§m----------------------");
         opfm.setLore(oplore);
         opf.setItemMeta(opfm);
 
